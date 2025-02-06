@@ -71,6 +71,19 @@ puts apple.inspect
 
 # 5. read a row's column value
 
+puts apple["url"]
+
 # 6. update a row's column value
 
+amazon = Company.find_by({"name" => "Amazon"})
+amazon["url"] = "https://amazon.com"
+amazon.save
+puts amazon.inspect
+
 # 7. delete a row
+
+google = Company.find_by({"name" => "Google"})
+google.destroy                                  #dont use .delete. use destroy! Destroy is a save.
+puts google.inspect
+
+puts "There are #{Company.all.count} companies"
