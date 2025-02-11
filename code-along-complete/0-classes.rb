@@ -3,6 +3,7 @@
 # should be the top-level directory (i.e. /workspace/your-app/) and then run:
 # rails runner code-along-complete/0-classes.rb
 
+
 # String Class
 
 bens_favorite_food = "sushi"
@@ -15,6 +16,9 @@ puts brians_favorite_food.class # type of thing this is (aka object)
 
 puts bens_favorite_food.upcase
 puts brians_favorite_food.upcase
+
+# We know about the following classes: Strings, Integers, floats (.to_f), arrays, hashes.
+  #In Array class, we know how to .sort and .uniq 
 
 # Our own class
 class Dog < Hash
