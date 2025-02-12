@@ -10,7 +10,27 @@ Contact.destroy_all
 
 # - Insert and read contact data for companies in the database
 
-apple = Company.find_by({ "name" => "Apple" })
+apple = Company.new
+apple["name"] = "Apple"
+apple["city"] = "Cupertino"
+apple["state"] = "CA"
+apple["url"] = "https://www.apple.com"
+apple.save
+
+amazon = Company.new
+amazon["name"] = "Amazon"
+amazon["city"] = "Seattle"
+amazon["state"] = "WA"
+amazon.save
+
+new_company3 = Company.new
+new_company3["name"] = "Twitter"
+new_company3["city"] = "San Francisco"
+new_company3["state"] = "CA"
+new_company3.save
+
+# How many rows are in the companies table?
+puts "companies: #{Company.all.count}" # companies: 3
 
 contact = Contact.new
 contact["first_name"] = "Tim"
@@ -26,8 +46,6 @@ contact["email"] = "craig@apple.com"
 contact["company_id"] = apple["id"]
 contact.save
 
-amazon = Company.find_by({ "name" => "Amazon" })
-
 contact = Contact.new
 contact["first_name"] = "Jeff"
 contact["last_name"] = "Bezos"
@@ -35,15 +53,31 @@ contact["email"] = "jeff@amazon.com"
 contact["company_id"] = amazon["id"]
 contact.save
 
+puts Company.all.count
+puts Contact.all.count
+
 puts "There are #{Company.all.count} companies"
 puts "There are #{Contact.all.count} contacts"
-
 
 # 1. insert new rows in the contacts table with relationship to a company
 
 # 2. How many contacts work at Apple?
 
-apple_contacts = Contact.where ({"company_id" => apple["id"]})
-puts "Apple peeps: #{apple_contacts.count}"
+# first query to find the row in companies for Apple
+apple = Company.find_by({ "name" => "Apple" })
+
+# next, query to find all rows in contacts with relationship to Apple
+# "talk" to the contacts table using the Contact model:
+
+apple_contacts = Contact.where({ "company_id" => apple["id"] })
+puts apple_contacts.inspect
+
+puts "Contacts at Apple: #{apple_contacts.count}"
+for contact in apple_contacts
+    puts "#{contact["first_name"]} #{contact["last_name"]}"
+end
 
 # 3. What is the full name of each contact who works at Apple?
+
+# Go through this again with tutor. Use the code along complete for now. Something got messed up
+
