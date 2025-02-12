@@ -62,5 +62,6 @@ for contact in apple_contacts
   first_name = contact["first_name"]
   last_name = contact["last_name"]
   # display the first_name and last_name
-  puts "#{first_name} #{last_name}"
+  puts "#{first_name} #{last_name}" #or puts "#{contact["first_name"]} #{contact["last_name"]}"
+
 end
